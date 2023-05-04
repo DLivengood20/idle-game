@@ -7,7 +7,7 @@ const Game = () => {
   const [autoClickers, setAutoClickers] = useState(0);
 
   const getAutoclickerCost = () => {
-    return Math.round(10 * Math.pow(1.2, autoClickers + 1));
+    return autoClickers === 0 ? 10 : Math.round(10 * Math.pow(1.2, autoClickers));
   };
 
   const buyAutoClicker = () => {
