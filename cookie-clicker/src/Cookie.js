@@ -1,10 +1,11 @@
 import React from 'react';
+import CookieImg from './cookie.png';
 
-const Cookie = ({ count }) => {
+const Cookie = ({ cookies, onClick }) => {
   return (
     <div>
-      <img src="cookie.png" alt="Cookie" />
-      <div>Cookies: {count}</div>
+      <img src={CookieImg} alt="Cookie" onClick={onClick} />
+      <div>Current cookies: {cookies}</div>
     </div>
   );
 };

@@ -40,9 +40,7 @@ const Game = () => {
 
   return (
     <div>
-      <Cookie cookies={cookies} />
-      <div>Current cookies: {cookies}</div>
-      <button onClick={handleClick}>Click me!</button>
+      <Cookie cookies={cookies} onClick={handleClick} />
       <AutoClickerButton cost={getAutoclickerCost(1)} cookies={cookies} onClick={() => buyAutoClicker(1)} />
       <AutoClickerButton cost={getAutoclickerCost(2)} cookies={cookies} onClick={() => buyAutoClicker(2)} />
     </div>
