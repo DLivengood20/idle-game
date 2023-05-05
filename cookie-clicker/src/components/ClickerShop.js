@@ -31,8 +31,8 @@ const ClickerShop = ({
 
   return (
     <div>
-      <AutoClickerButton cost={getAutoclickerCost(1)} cookies={cookies} onClick={() => buyAutoClicker(1, setCount)} />
-      <AutoClickerButton cost={getAutoclickerCost(2)} cookies={cookies} onClick={() => buyAutoClicker(2, setCount)} />
+      <AutoClickerButton tier={1} cost={getAutoclickerCost(1)} cookies={cookies} onClick={() => buyAutoClicker(1, setCount)} />
+      <AutoClickerButton tier={2} cost={getAutoclickerCost(2)} cookies={cookies} onClick={() => buyAutoClicker(2, setCount)} />
     </div>
   );
 };

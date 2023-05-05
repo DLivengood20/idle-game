@@ -1,6 +1,7 @@
 import React from 'react';
+import './AutoClickerButton.css';
 
-const AutoClickerButton = ({ cost, cookies, onClick }) => {
+const AutoClickerButton = ({ tier, cost, cookies, onClick }) => {
   const handleClick = () => {
     if (cookies >= cost) {
       onClick();
@@ -11,7 +12,7 @@ const AutoClickerButton = ({ cost, cookies, onClick }) => {
 
   return (
     <button onClick={handleClick}>
-      Buy Auto-clicker ({cost} cookies)
+      Buy Tier {tier} Auto-clicker ({cost} cookies)
     </button>
   );
 };

@@ -1,0 +1,32 @@
+.cookie-component {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.cookie-container {
+  display: inline-block;
+  width: 10em;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+  transition: all 0.1s ease-in-out;
+}
+
+.cookie-component img {
+  width: 100%;
+  cursor: pointer;
+}
+
+.cookie-container:hover {
+  transform: scale(1.05);
+}
+
+.cookie-container:active {
+  transform: scale(0.95);
+}
+
+.cookie-component div {
+  font-size: 2em;
+}
