@@ -1,18 +1,43 @@
 import React from 'react';
 import './AutoClickerButton.css';
 
-const AutoClickerButton = ({ tier, cost, cookies, onClick }) => {
+const AutoClickerButton = ({ tier, cookies, autoClickers, tier2AutoClickers, setAutoClickers, setTier2AutoClickers, setCount }) => {
+  const getAutoclickerCost = (tier) => {
+    switch (tier) {
+      case 1:
+        return autoClickers === 0 ? 10 : Math.round(10 * Math.pow(1.2, autoClickers));
+      case 2:
+        return tier2AutoClickers === 0 ? 100 : Math.round(100 * Math.pow(1.2, tier2AutoClickers));
+      default:
+        return 0;
+    }
+  };
+
+
   const handleClick = () => {
+    const cost = getAutoclickerCost(tier);
     if (cookies >= cost) {
-      onClick();
+      switch (tier) {
+        case 1:
+          setAutoClickers(autoClickers + 1);
+          setCount(cookies - cost);
+          break;
+        case 2:
+          setTier2AutoClickers(tier2AutoClickers + 1);
+          setCount(cookies - cost);
+          break;
+        default:
+          break;
+      }
     } else {
       alert("You don't have enough cookies!" + cost);
     }
   };
 
+
   return (
     <button onClick={handleClick}>
-      Buy Tier {tier} Auto-clicker ({cost} cookies)
+      Buy Tier {tier} Auto-clicker ({getAutoclickerCost(tier)} cookies)
     </button>
   );
 };
