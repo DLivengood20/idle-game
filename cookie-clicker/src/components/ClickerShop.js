@@ -7,7 +7,7 @@ const ClickerShop = ({
   setAutoClickers,
   tier2AutoClickers,
   setTier2AutoClickers,
-  setCount
+  setCount,
 }) => {
   return (
     <div>

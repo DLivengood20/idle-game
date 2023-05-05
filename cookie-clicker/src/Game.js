@@ -13,7 +13,9 @@ const Game = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCount((prevCount) => prevCount + (autoClickers + (tier2AutoClickers * 2)));
+      setCount(
+        (prevCount) => prevCount + (autoClickers + tier2AutoClickers * 2)
+      );
     }, 1000);
     return () => clearInterval(interval);
   }, [autoClickers, tier2AutoClickers]);
