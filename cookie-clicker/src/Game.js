@@ -3,7 +3,7 @@ import Cookie from './components/Cookie';
 import ClickerShop from './components/ClickerShop';
 
 const Game = () => {
-  const [cookies, setCount] = useState(0);
+  const [cookies, setCount] = useState(9995);
   const [autoClickers, setAutoClickers] = useState(0);
   const [tier2AutoClickers, setTier2AutoClickers] = useState(0);
 
@@ -12,12 +12,13 @@ const Game = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCount(
-        (prevCount) => prevCount + (autoClickers + tier2AutoClickers * 2)
-      );
-    }, 1000);
-    return () => clearInterval(interval);
+    if (autoClickers + tier2AutoClickers > 0) {
+      const intervalLength = 1000 / (autoClickers + tier2AutoClickers * 2);
+      const interval = setInterval(() => {
+        setCount((prevCount) => prevCount + 1);
+      }, intervalLength);
+      return () => clearInterval(interval);
+    }
   }, [autoClickers, tier2AutoClickers]);
 
   return (
