@@ -3,7 +3,7 @@ import Cookie from './components/Cookie';
 import ClickerShop from './components/ClickerShop';
 
 const Game = () => {
-  const [cookies, setCount] = useState(10000);
+  const [cookies, setCount] = useState(0);
   const [autoClickers, setAutoClickers] = useState(0);
   const [tier2AutoClickers, setTier2AutoClickers] = useState(0);
   const [tier3AutoClickers, setTier3AutoClickers] = useState(0);
