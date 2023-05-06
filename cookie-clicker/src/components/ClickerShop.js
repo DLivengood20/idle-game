@@ -7,6 +7,8 @@ const ClickerShop = ({
   setAutoClickers,
   tier2AutoClickers,
   setTier2AutoClickers,
+  tier3AutoClickers,
+  setTier3AutoClickers,
   setCount,
 }) => {
   return (
@@ -23,6 +25,13 @@ const ClickerShop = ({
         cookies={cookies}
         tier2AutoClickers={tier2AutoClickers}
         setTier2AutoClickers={setTier2AutoClickers}
+        setCount={setCount}
+      />
+      <AutoClickerButton
+        tier={3}
+        cookies={cookies}
+        tier3AutoClickers={tier3AutoClickers}
+        setTier3AutoClickers={setTier3AutoClickers}
         setCount={setCount}
       />
     </div>

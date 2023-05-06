@@ -4,14 +4,15 @@ import './Cookie.css';
 
 const Cookie = ({ cookies, onClick }) => {
   const displayedCookie = () => {
-    if (cookies < 1000) {
-      return cookies;
-    } else if (cookies < 10000) {
-      return `${(cookies / 1000).toFixed(3)}k`;
-    } else if (cookies < 100000) {
-      return `${(cookies / 1000).toFixed(2)}k`;
-    } else {
-      return cookies;
+    switch (true) {
+      case cookies < 1000:
+        return cookies;
+      case cookies < 10000:
+        return `${(cookies / 1000).toFixed(3)}k`;
+      case cookies < 100000:
+        return `${(cookies / 1000).toFixed(2)}k`;
+      default:
+        return cookies;
     }
   };
 
