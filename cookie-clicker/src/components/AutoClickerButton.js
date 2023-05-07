@@ -56,7 +56,7 @@ const AutoClickerButton = ({
   };
 
   return (
-    <button onClick={handleClick}>
+    <button onClick={handleClick} data-testid="autoclicker-button">
       Buy Tier {tier} Auto-clicker ({getAutoclickerCost(tier)} cookies)
     </button>
   );

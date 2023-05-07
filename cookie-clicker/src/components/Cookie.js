@@ -8,20 +8,30 @@ const Cookie = ({ cookies, onClick }) => {
       case cookies < 1000:
         return cookies;
       case cookies < 10000:
-        return `${(cookies / 1000).toFixed(3)}k`;
+        return `${cookies / 1000}k`;
       case cookies < 100000:
-        return `${(cookies / 1000).toFixed(2)}k`;
+        const roundedCount = Math.floor(cookies / 10) / 100;
+        return `${roundedCount}k`;
       default:
         return cookies;
     }
   };
 
   return (
-    <div className="cookie-component">
-      <div className="cookie-container" onClick={onClick}>
+    <div className="cookie-component" data-testid="cookie-component">
+      <div
+        className="cookie-container"
+        onClick={onClick}
+        data-testid="cookie-button"
+      >
         <img src={CookieImg} alt="Cookie" />
       </div>
-      <div>Current cookies: {displayedCookie()}</div>
+      <div>
+        Current cookies:
+        <span className="cookie-count" data-testid="cookie-count">
+          {displayedCookie()}
+        </span>
+      </div>
     </div>
   );
 };

@@ -39,7 +39,7 @@ const Game = () => {
   }, [autoClickers, tier2AutoClickers, tier3AutoClickers]);
 
   return (
-    <div>
+    <div data-testid="game-component">
       <Cookie cookies={cookies} onClick={handleClick} />
       <ClickerShop
         cookies={cookies}

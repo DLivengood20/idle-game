@@ -12,7 +12,7 @@ const ClickerShop = ({
   setCount,
 }) => {
   return (
-    <div>
+    <div data-testid="shop-component">
       <AutoClickerButton
         tier={1}
         cookies={cookies}
