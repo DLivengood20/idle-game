@@ -1,8 +1,13 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import AutoClickerButton from './AutoClickerButton';
 
 describe('AutoClickerButton', () => {
+  it('should render autoclicker button', () => {
+    render(<AutoClickerButton />);
+    expect(screen.getByTestId('autoclicker-button')).toBeInTheDocument();
+  });
+
   it('should update the cookie count when clicked', () => {
     const setCount = jest.fn();
     const setAutoClickers = jest.fn();
