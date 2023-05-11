@@ -4,13 +4,14 @@ import ClickerShop from './components/ClickerShop';
 import AutoClickerDisplay from './components/AutoClickerDisplay';
 
 const Game = () => {
+  // State variables for cookies and auto clickers
   const [cookies, setCount] = useState(0);
   const [tier1AutoClickers, setTier1AutoClickers] = useState(0);
   const [tier2AutoClickers, setTier2AutoClickers] = useState(0);
   const [tier3AutoClickers, setTier3AutoClickers] = useState(0);
 
   useEffect(() => {
-    // Load cookies from browser storage
+    // Load cookies and auto clickers from browser storage
     const savedCookies = Number(getCookieValue('cookies'));
     if (savedCookies !== 0) {
       setCount(parseInt(savedCookies));
@@ -27,25 +28,30 @@ const Game = () => {
     if (savedTier3AutoClickers !== 0) {
       setTier3AutoClickers(parseInt(savedTier3AutoClickers));
     }
+    // ... Load other auto clickers similarly
   }, []);
 
   useEffect(() => {
-    // Update cookies and autoClickers in browser storage
+    // Update cookies and auto clickers in browser storage
     setCookieValue('cookies', cookies.toString());
     setCookieValue('tier1AutoClickers', tier1AutoClickers.toString());
     setCookieValue('tier2AutoClickers', tier2AutoClickers.toString());
     setCookieValue('tier3AutoClickers', tier3AutoClickers.toString());
+    // ... Update other auto clickers similarly
   }, [cookies, tier1AutoClickers, tier2AutoClickers, tier3AutoClickers]);
 
+  // Function to handle cookie click
   const handleClick = () => {
     setCount(cookies + 1);
   };
 
+  // Function to calculate auto clicker values
   const calculateAutoClickerValues = (
     autoClickers,
     tier2AutoClickers,
     tier3AutoClickers
   ) => {
+    // Calculation logic for intervalLength and cookiesPerInterval
     const totalClickers =
       autoClickers + tier2AutoClickers * 2 + tier3AutoClickers * 5;
     let intervalLength, cookiesPerInterval;
@@ -67,6 +73,7 @@ const Game = () => {
   };
 
   useEffect(() => {
+    // Effect for auto clicker functionality
     if (tier1AutoClickers + tier2AutoClickers + tier3AutoClickers > 0) {
       const { intervalLength, cookiesPerInterval } = calculateAutoClickerValues(
         tier1AutoClickers,
@@ -102,6 +109,7 @@ const Game = () => {
   );
 };
 
+// Function to get the value of a cookie
 function getCookieValue(key) {
   const cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
@@ -113,6 +121,7 @@ function getCookieValue(key) {
   return '';
 }
 
+// Function to set the value of a cookie
 function setCookieValue(key, value) {
   document.cookie = `${key}=${value}`;
 }

@@ -1,41 +1,43 @@
-.clicker-displays {
-  margin-top: -265px;
-  margin-bottom: calc(var(--cookie-size) / 2);
-}
-
+/* Styles for tier-1 auto-clickers */
 .tier-1 {
-  position: relative;
-  z-index: 10;
-  pointer-events: none;
+  position: relative; /* Sets the position as relative */
+  z-index: 10; /* Places the tier-1 element above other elements */
+  pointer-events: none; /* Disables pointer events on the tier-1 element */
+  /* Calculates the top margin based on cookie size and c-count-top */
+  margin-top: calc(calc(var(--cookie-size) / 3 * -2) - var(--c-count-top));
+  /* Calculates the bottom margin based on cookie size and c-count-top */
+  margin-bottom: calc(calc(var(--cookie-size) / 3 * 2) + var(--c-count-top));
 }
 
+/* Styles for tier-1 auto-clicker images */
 .tier-1 img {
-  scale: 2;
+  scale: 2; /* Scales up the tier-1 auto-clicker images */
 }
 
+/* Styles for the wave container */
 .wave {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px; /* Adjust the height as needed */
+  display: flex; /* Sets the display as flex */
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /* Centers the content vertically */
 }
 
+/* Styles for each row of the wave */
 .wave-row {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  animation: waveAnimation 1s infinite;
+  position: absolute; /* Sets the position as absolute */
+  animation: waveAnimation 1s infinite; /* Applies the wave animation */
+  /* Delays the animation based on the animation order */
   animation-delay: calc(var(--animation-order) * 100ms);
 }
 
+/* Keyframes for the wave animation */
 @keyframes waveAnimation {
-  40% {
-    transform: translate(0, 0);
+  0% {
+    transform: translateY(0); /* Moves the wave row */
   }
-  50% {
-    transform: translate(0, 10px);
+  10% {
+    transform: translateY(10px); /* Moves the wave row */
   }
-  60% {
-    transform: translate(0, 0);
+  20% {
+    transform: translateY(0); /* Moves the wave row */
   }
 }

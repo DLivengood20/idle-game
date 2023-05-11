@@ -12,6 +12,7 @@ const AutoClickerButton = ({
   setTier3AutoClickers,
   setCount,
 }) => {
+  // Function to calculate the cost of an autoclicker based on its tier
   const getAutoclickerCost = (tier) => {
     switch (tier) {
       case 1:
@@ -31,9 +32,11 @@ const AutoClickerButton = ({
     }
   };
 
+  // Function called when the button is clicked
   const handleClick = () => {
     const cost = getAutoclickerCost(tier);
     if (cookies >= cost) {
+      // Purchase the autoclicker and deduct the cost from the cookie count
       switch (tier) {
         case 1:
           setAutoClickers(autoClickers + 1);
@@ -51,6 +54,7 @@ const AutoClickerButton = ({
           break;
       }
     } else {
+      // Show an alert if the player doesn't have enough cookies
       alert("You don't have enough cookies!" + cost);
     }
   };

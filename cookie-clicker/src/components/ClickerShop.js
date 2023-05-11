@@ -13,6 +13,7 @@ const ClickerShop = ({
 }) => {
   return (
     <div data-testid="shop-component">
+      {/* Render AutoClickerButton for Tier 1 */}
       <AutoClickerButton
         tier={1}
         cookies={cookies}
@@ -20,6 +21,8 @@ const ClickerShop = ({
         setAutoClickers={setAutoClickers}
         setCount={setCount}
       />
+
+      {/* Render AutoClickerButton for Tier 2 */}
       <AutoClickerButton
         tier={2}
         cookies={cookies}
@@ -27,6 +30,8 @@ const ClickerShop = ({
         setTier2AutoClickers={setTier2AutoClickers}
         setCount={setCount}
       />
+
+      {/* Render AutoClickerButton for Tier 3 */}
       <AutoClickerButton
         tier={3}
         cookies={cookies}
