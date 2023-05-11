@@ -7,7 +7,7 @@
 
 .cookie-container {
   display: inline-block;
-  width: 10em;
+  width: var(--cookie-size);
   border-radius: 50%;
   overflow: hidden;
   object-fit: cover;

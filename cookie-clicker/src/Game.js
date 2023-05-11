@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cookie from './components/Cookie';
 import ClickerShop from './components/ClickerShop';
+import AutoClickerDisplay from './components/AutoClickerDisplay';
 
 const Game = () => {
   const [cookies, setCount] = useState(0);
@@ -82,6 +83,11 @@ const Game = () => {
   return (
     <div data-testid="game-component">
       <Cookie cookies={cookies} onClick={handleClick} />
+      <AutoClickerDisplay
+        tier1AutoClickers={tier1AutoClickers}
+        tier2AutoClickers={tier2AutoClickers}
+        tier3AutoClickers={tier3AutoClickers}
+      />
       <ClickerShop
         cookies={cookies}
         autoClickers={tier1AutoClickers}

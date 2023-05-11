@@ -1,0 +1,41 @@
+.clicker-displays {
+  margin-top: -265px;
+  margin-bottom: calc(var(--cookie-size) / 2);
+}
+
+.tier-1 {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tier-1 img {
+  scale: 2;
+}
+
+.wave {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Adjust the height as needed */
+}
+
+.wave-row {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  animation: waveAnimation 1s infinite;
+  animation-delay: calc(var(--animation-order) * 100ms);
+}
+
+@keyframes waveAnimation {
+  40% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 10px);
+  }
+  60% {
+    transform: translate(0, 0);
+  }
+}
