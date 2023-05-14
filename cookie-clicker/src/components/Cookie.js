@@ -34,7 +34,8 @@ const Cookie = ({ cookies, onClick }) => {
       <div className="count-display">
         Current cookies:
         <span className="cookie-count" data-testid="cookie-count">
-          {displayedCookie()} {/* Display the calculated cookie count */}
+          {displayedCookie()}
+          {/* Display the calculated cookie count */}
         </span>
       </div>
     </div>

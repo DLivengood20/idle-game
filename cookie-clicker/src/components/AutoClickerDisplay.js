@@ -1,5 +1,6 @@
 import clickerImg from './clicker.png';
 import './AutoClickerDisplay.css';
+import GetCookieSize from './GetCookieSize';
 
 const AutoClickerDisplay = ({
   tier1AutoClickers,
@@ -13,7 +14,7 @@ const AutoClickerDisplay = ({
     // Loop to generate auto-clicker images
     for (let i = 0; i < maxClickerDisplay; i++) {
       // Calculate the position of each auto-clicker image in a circular pattern
-      const radius = 330; // 'px' :Radius should be slightly larger than the size of the cookie
+      const radius = GetCookieSize() + 10; // 'px' :Radius should be slightly larger than the size of the cookie
       const increment = Math.PI / 10; // Increment angle for each auto-clicker image
       const position = {
         x: Math.sin(increment * i) * radius,
@@ -31,6 +32,7 @@ const AutoClickerDisplay = ({
       // Push each auto-clicker image with its corresponding style to the content array
       content.push(
         <img
+          key={`tier1-${i}`}
           src={clickerImg}
           alt="auto-clicker"
           className="wave-row"

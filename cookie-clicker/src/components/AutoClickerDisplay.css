@@ -1,12 +1,13 @@
 /* Styles for tier-1 auto-clickers */
 .tier-1 {
+  --calc-margin: calc(calc(var(--cookie-size) / 2 * -1) - 75px);
   position: relative; /* Sets the position as relative */
   z-index: 10; /* Places the tier-1 element above other elements */
   pointer-events: none; /* Disables pointer events on the tier-1 element */
   /* Calculates the top margin based on cookie size and c-count-top */
-  margin-top: calc(calc(var(--cookie-size) / 3 * -2) - var(--c-count-top));
+  margin-top: var(--calc-margin);
   /* Calculates the bottom margin based on cookie size and c-count-top */
-  margin-bottom: calc(calc(var(--cookie-size) / 3 * 2) + var(--c-count-top));
+  margin-bottom: calc(var(--calc-margin) * -1);
 }
 
 /* Styles for tier-1 auto-clicker images */
@@ -18,7 +19,7 @@
 .wave {
   display: flex; /* Sets the display as flex */
   justify-content: center; /* Centers the content horizontally */
-  align-items: center; /* Centers the content vertically */
+  align-items: center;
 }
 
 /* Styles for each row of the wave */

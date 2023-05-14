@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Cookie from './components/Cookie';
 import ClickerShop from './components/ClickerShop';
 import AutoClickerDisplay from './components/AutoClickerDisplay';
+import GetCookieSize from './components/GetCookieSize';
 
 const Game = () => {
   // State variables for cookies and auto clickers
@@ -88,7 +89,10 @@ const Game = () => {
   }, [tier1AutoClickers, tier2AutoClickers, tier3AutoClickers]);
 
   return (
-    <div data-testid="game-component">
+    <div
+      data-testid="game-component"
+      style={{ '--cookie-size': `${GetCookieSize()}px` }}
+    >
       <Cookie cookies={cookies} onClick={handleClick} />
       <AutoClickerDisplay
         tier1AutoClickers={tier1AutoClickers}
