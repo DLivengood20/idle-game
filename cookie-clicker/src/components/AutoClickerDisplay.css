@@ -1,31 +1,29 @@
 /* Styles for tier-1 auto-clickers */
 .tier-1 {
-  --calc-margin: calc(calc(var(--cookie-size) / 2 * -1) - 75px);
-  position: relative; /* Sets the position as relative */
-  z-index: 10; /* Places the tier-1 element above other elements */
-  pointer-events: none; /* Disables pointer events on the tier-1 element */
-  /* Calculates the top margin based on cookie size and c-count-top */
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  /* Calculates the margins based on cookie size and count height */
   margin-top: var(--calc-margin);
-  /* Calculates the bottom margin based on cookie size and c-count-top */
   margin-bottom: calc(var(--calc-margin) * -1);
 }
 
 /* Styles for tier-1 auto-clicker images */
 .tier-1 img {
-  scale: 2; /* Scales up the tier-1 auto-clicker images */
+  width: calc(var(--cookie-size) / 10);
 }
 
 /* Styles for the wave container */
 .wave {
-  display: flex; /* Sets the display as flex */
-  justify-content: center; /* Centers the content horizontally */
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 /* Styles for each row of the wave */
 .wave-row {
-  position: absolute; /* Sets the position as absolute */
-  animation: waveAnimation 1s infinite; /* Applies the wave animation */
+  position: absolute;
+  animation: waveAnimation 1s infinite;
   /* Delays the animation based on the animation order */
   animation-delay: calc(var(--animation-order) * 100ms);
 }
@@ -33,12 +31,12 @@
 /* Keyframes for the wave animation */
 @keyframes waveAnimation {
   0% {
-    transform: translateY(0); /* Moves the wave row */
+    transform: translateY(0);
   }
   10% {
-    transform: translateY(10px); /* Moves the wave row */
+    transform: translateY(calc(var(--cookie-size) / 20));
   }
   20% {
-    transform: translateY(0); /* Moves the wave row */
+    transform: translateY(0);
   }
 }

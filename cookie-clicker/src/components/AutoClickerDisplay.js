@@ -7,6 +7,20 @@ const AutoClickerDisplay = ({
   tier2AutoClickers,
   tier3AutoClickers,
 }) => {
+  // Calculates the margin for tier-1 auto-clickers
+  const getTier1Margin = () => {
+    // Calculates the negative margin based on the height of the '.count-display' element and cookie size
+    const calculatedMargin =
+      -1 *
+      (document.querySelector('.count-display').clientHeight +
+        GetCookieSize() / 2 +
+        25);
+    return {
+      '--calc-margin': `${calculatedMargin}px`,
+    };
+  };
+
+  // Generates tier-1 auto-clicker images
   const getTier1 = () => {
     let content = [];
     const maxClickerDisplay = Math.min(tier1AutoClickers, 20);
@@ -47,7 +61,9 @@ const AutoClickerDisplay = ({
     // Render the auto-clicker display if there are any auto-clickers
     return (
       <div className="clicker-displays">
-        <div className="tier-1 wave">{getTier1()}</div>
+        <div className="tier-1 wave" style={getTier1Margin()}>
+          {getTier1()}
+        </div>
       </div>
     );
   } else {

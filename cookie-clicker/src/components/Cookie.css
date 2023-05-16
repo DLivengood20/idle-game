@@ -11,6 +11,7 @@
   display: inline-block; /* Displays the container as an inline-block element */
   /* Sets the width based on the cookie size variable */
   width: var(--cookie-size);
+  height: var(--cookie-size);
   border-radius: 50%; /* Rounds the corners to create a circular shape */
   overflow: hidden; /* Clips any content that overflows the container */
   object-fit: cover; /* Ensures the image inside the container is scaled to cover the entire area */
@@ -41,5 +42,5 @@
 /* Styles for the count display container */
 .count-display {
   /* Sets the top margin based on the c-count-top variable */
-  margin-top: var(--c-count-top);
+  margin-top: 20px;
 }
