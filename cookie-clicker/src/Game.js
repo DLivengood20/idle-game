@@ -3,6 +3,8 @@ import Cookie from './components/Cookie';
 import ClickerShop from './components/ClickerShop';
 import AutoClickerDisplay from './components/AutoClickerDisplay';
 import GetCookieSize from './components/GetCookieSize';
+import ResetButton from './components/ResetButton';
+import './Game.css';
 
 const Game = () => {
   // State variables for cookies and auto clickers
@@ -108,6 +110,12 @@ const Game = () => {
         tier3AutoClickers={tier3AutoClickers}
         setTier3AutoClickers={setTier3AutoClickers}
         setCount={setCount}
+      />
+      <ResetButton
+        setCount={setCount}
+        setTier1AutoClickers={setTier1AutoClickers}
+        setTier2AutoClickers={setTier2AutoClickers}
+        setTier3AutoClickers={setTier3AutoClickers}
       />
     </div>
   );
