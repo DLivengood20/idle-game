@@ -1,0 +1,33 @@
+.sidebar {
+  background-color: #00000060;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  z-index: 100;
+  display: flex;
+  grid-row: auto;
+  transition: left 0.3s ease;
+  --sidebar-button-width: 30px;
+  --sidebar-width: calc(var(--cookie-size) * 1.8);
+  width: var(--sidebar-width);
+}
+
+.sidebar.closed {
+  left: calc(
+    calc(var(--sidebar-width) * -1) + var(--sidebar-button-width) - 2px
+  );
+}
+
+.sidebar button {
+  margin: 0;
+  border-radius: 0;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-toggle {
+  width: var(--sidebar-button-width);
+  padding: 0;
+}

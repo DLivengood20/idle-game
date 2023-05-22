@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Cookie from './components/Cookie';
-import ClickerShop from './components/ClickerShop';
 import AutoClickerDisplay from './components/AutoClickerDisplay';
 import GetCookieSize from './components/GetCookieSize';
 import ResetButton from './components/ResetButton';
+import ShopSidebar from './components/ShopSidebar';
 import './Game.css';
 
 const Game = () => {
@@ -101,10 +101,10 @@ const Game = () => {
         tier2AutoClickers={tier2AutoClickers}
         tier3AutoClickers={tier3AutoClickers}
       />
-      <ClickerShop
+      <ShopSidebar
         cookies={cookies}
-        autoClickers={tier1AutoClickers}
-        setAutoClickers={setTier1AutoClickers}
+        tier1AutoClickers={tier1AutoClickers}
+        setTier1AutoClickers={setTier1AutoClickers}
         tier2AutoClickers={tier2AutoClickers}
         setTier2AutoClickers={setTier2AutoClickers}
         tier3AutoClickers={tier3AutoClickers}

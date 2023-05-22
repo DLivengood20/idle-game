@@ -12,7 +12,7 @@ const ClickerShop = ({
   setCount,
 }) => {
   return (
-    <div data-testid="shop-component" style={{ display: 'inline-flex' }}>
+    <div data-testid="shop-component">
       {/* Render AutoClickerButton for Tier 1 */}
       <AutoClickerButton
         tier={1}

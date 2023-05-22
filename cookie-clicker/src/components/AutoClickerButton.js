@@ -67,18 +67,21 @@ const AutoClickerButton = ({
   };
 
   return (
-    <div>
-      <button onClick={handleClick} data-testid="autoclicker-button">
+    <div className="autoclicker-button-container">
+      <button
+        className="autoclicker-button"
+        onClick={handleClick}
+        data-testid="autoclicker-button"
+      >
         Buy Tier {tier} Auto-clicker ({getAutoclickerCost(tier)} cookies)
       </button>
       {showAlert && (
         <div className="popup-container">
           <div>
-            <span className="popup-message">
+            <p className="popup-message">
               You don't have enough cookies! Need {getAutoclickerCost(tier)}{' '}
               cookies.
-            </span>
-            <br />
+            </p>
             <button className="popup-button" onClick={hideAlert}>
               OK
             </button>
