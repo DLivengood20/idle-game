@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AutoClickerButton.css';
 
 const AutoClickerButton = ({
@@ -12,6 +12,8 @@ const AutoClickerButton = ({
   setTier3AutoClickers,
   setCount,
 }) => {
+  const [showAlert, setShowAlert] = useState(false); // State to control the visibility of the alert
+
   // Function to calculate the cost of an autoclicker based on its tier
   const getAutoclickerCost = (tier) => {
     switch (tier) {
@@ -54,15 +56,36 @@ const AutoClickerButton = ({
           break;
       }
     } else {
-      // Show an alert if the player doesn't have enough cookies
-      alert("You don't have enough cookies!" + cost);
+      // Show the alert by setting showAlert to true
+      setShowAlert(true);
     }
   };
 
+  // Function to hide the alert
+  const hideAlert = () => {
+    setShowAlert(false);
+  };
+
   return (
-    <button onClick={handleClick} data-testid="autoclicker-button">
-      Buy Tier {tier} Auto-clicker ({getAutoclickerCost(tier)} cookies)
-    </button>
+    <div>
+      <button onClick={handleClick} data-testid="autoclicker-button">
+        Buy Tier {tier} Auto-clicker ({getAutoclickerCost(tier)} cookies)
+      </button>
+      {showAlert && (
+        <div className="popup-container">
+          <div>
+            <span className="popup-message">
+              You don't have enough cookies! Need {getAutoclickerCost(tier)}{' '}
+              cookies.
+            </span>
+            <br />
+            <button className="popup-button" onClick={hideAlert}>
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
