@@ -60,7 +60,7 @@ const AutoClickerDisplay = ({
   if (tier1AutoClickers + tier2AutoClickers + tier3AutoClickers > 0) {
     // Render the auto-clicker display if there are any auto-clickers
     return (
-      <div className="clicker-displays">
+      <div className="clicker-displays" data-testid="clicker-displays">
         <div className="tier-1 wave" style={getTier1Margin()}>
           {getTier1()}
         </div>

@@ -3,6 +3,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Game from './Game';
 import { act } from 'react-dom/test-utils';
 
+// Helper function to simulate the passage of time
+const simulateTimePassage = () => {
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
+};
+
 describe('Game', () => {
   beforeEach(() => {
     document.cookie = 'cookies=0';
@@ -16,9 +23,31 @@ describe('Game', () => {
     expect(screen.getByTestId('cookie-component')).toBeInTheDocument();
   });
 
+  it('renders the AutoClickerDisplay component when there are autoclickers', () => {
+    document.cookie = 'tier1AutoClickers=1';
+    render(<Game />);
+    expect(screen.getByTestId('clicker-displays')).toBeInTheDocument();
+  });
+
+  it('does not render the ClickerShop component when 0 autoclickers', () => {
+    render(<Game />);
+    expect(document.getElementsByClassName('clicker-displays').length).toBe(0);
+  });
+
   it('renders the ClickerShop component', () => {
     render(<Game />);
     expect(screen.getByTestId('shop-component')).toBeInTheDocument();
+  });
+
+  it('renders the Game component with initial state', () => {
+    render(<Game />);
+    const cookieCount = screen.getByTestId('cookie-count');
+    const autoClickers = screen.getAllByTestId('autoclicker-button');
+
+    expect(cookieCount).toHaveTextContent('0');
+    expect(autoClickers[0]).toHaveTextContent('0');
+    expect(autoClickers[1]).toHaveTextContent('0');
+    expect(autoClickers[2]).toHaveTextContent('0');
   });
 
   it('updates cookie count when cookie is clicked', () => {
@@ -37,18 +66,113 @@ describe('Game', () => {
     expect(cookieCount).toHaveTextContent('100');
   });
 
-  it('loads auto-clickers from browser storage', () => {
+  it('loads tier 1 auto-clickers from browser storage', () => {
     document.cookie = 'tier1AutoClickers=2';
+    render(<Game />);
+    const tier1AutoClickers = screen.getAllByTestId('autoclicker-button')[0];
+    expect(tier1AutoClickers.textContent).toMatch('14 cookies');
+  });
+
+  it('loads tier 2 auto-clickers from browser storage', () => {
     document.cookie = 'tier2AutoClickers=1';
+    render(<Game />);
+    const tier2AutoClickers = screen.getAllByTestId('autoclicker-button')[1];
+    expect(tier2AutoClickers.textContent).toMatch('120 cookies');
+  });
+
+  it('loads tier 3 auto-clickers from browser storage', () => {
     document.cookie = 'tier3AutoClickers=1';
     render(<Game />);
-    const autoClickers = screen.getAllByTestId('autoclicker-button');
-    const tier1AutoClickers = autoClickers[0];
-    const tier2AutoClickers = autoClickers[1];
-    const tier3AutoClickers = autoClickers[2];
-    expect(tier1AutoClickers.textContent).toMatch('14 cookies');
-    expect(tier2AutoClickers.textContent).toMatch('120 cookies');
+    const tier3AutoClickers = screen.getAllByTestId('autoclicker-button')[2];
     expect(tier3AutoClickers.textContent).toMatch('1200 cookies');
+  });
+
+  describe('autoclickers increase when purchased', () => {
+    it('tier 1', () => {
+      document.cookie = 'cookies=10000';
+      render(<Game />);
+      const buyTier1AutoClicker =
+        screen.getAllByTestId('autoclicker-button')[0];
+
+      let expectedCost = Math.floor(10 * 1.2);
+      fireEvent.click(buyTier1AutoClicker);
+      expect(buyTier1AutoClicker.textContent).toMatch(expectedCost.toString());
+
+      expectedCost = Math.floor(expectedCost * 1.2);
+      fireEvent.click(buyTier1AutoClicker);
+      expect(buyTier1AutoClicker.textContent).toMatch(expectedCost.toString());
+    });
+
+    it('tier 2', () => {
+      document.cookie = 'cookies=10000';
+      render(<Game />);
+      const buyTier2AutoClicker =
+        screen.getAllByTestId('autoclicker-button')[1];
+
+      let expectedCost = Math.floor(100 * 1.2);
+      fireEvent.click(buyTier2AutoClicker);
+      expect(buyTier2AutoClicker.textContent).toMatch(expectedCost.toString());
+
+      expectedCost = Math.floor(expectedCost * 1.2);
+      fireEvent.click(buyTier2AutoClicker);
+      expect(buyTier2AutoClicker.textContent).toMatch(expectedCost.toString());
+    });
+
+    it('tier 3', () => {
+      document.cookie = 'cookies=100000';
+      render(<Game />);
+      const buyTier3AutoClicker =
+        screen.getAllByTestId('autoclicker-button')[2];
+
+      let expectedCost = Math.floor(1000 * 1.2);
+      fireEvent.click(buyTier3AutoClicker);
+      expect(buyTier3AutoClicker.textContent).toMatch(expectedCost.toString());
+
+      expectedCost = Math.floor(expectedCost * 1.2);
+      fireEvent.click(buyTier3AutoClicker);
+      expect(buyTier3AutoClicker.textContent).toMatch(expectedCost.toString());
+    });
+  });
+
+  describe('auto-clickers deduct cost when purchased', () => {
+    it('tier 1 cost 10 at inital then 12', () => {
+      document.cookie = 'cookies=100';
+      render(<Game />);
+      const tier1AutoClickers = screen.getAllByTestId('autoclicker-button')[0];
+      const cookieCount = screen.getByTestId('cookie-count');
+
+      fireEvent.click(tier1AutoClickers);
+      expect(cookieCount).toHaveTextContent('90');
+
+      fireEvent.click(tier1AutoClickers);
+      expect(cookieCount).toHaveTextContent('78');
+    });
+
+    it('tier 2 cost 100 at inital then 120', () => {
+      document.cookie = 'cookies=1000';
+      render(<Game />);
+      const tier1AutoClickers = screen.getAllByTestId('autoclicker-button')[1];
+      const cookieCount = screen.getByTestId('cookie-count');
+
+      fireEvent.click(tier1AutoClickers);
+      expect(cookieCount).toHaveTextContent('900');
+
+      fireEvent.click(tier1AutoClickers);
+      expect(cookieCount).toHaveTextContent('780');
+    });
+
+    it('tier 3 cost 1000 at inital then 1200', () => {
+      document.cookie = 'cookies=10000';
+      render(<Game />);
+      const tier1AutoClickers = screen.getAllByTestId('autoclicker-button')[2];
+      const cookieCount = screen.getByTestId('cookie-count');
+
+      fireEvent.click(tier1AutoClickers);
+      expect(cookieCount).toHaveTextContent('9k');
+
+      fireEvent.click(tier1AutoClickers);
+      expect(cookieCount).toHaveTextContent('7.8k');
+    });
   });
 
   describe('auto-clickers increase cookie count by', () => {
@@ -59,22 +183,15 @@ describe('Game', () => {
       const cookieCount = screen.getByTestId('cookie-count');
       expect(cookieCount.textContent).toBe('0');
 
-      act(() => {
-        jest.runOnlyPendingTimers();
-      });
-
+      simulateTimePassage();
       expect(cookieCount).toHaveTextContent('1');
 
-      act(() => {
-        jest.runOnlyPendingTimers();
-      });
-
+      simulateTimePassage();
       expect(cookieCount).toHaveTextContent('2');
-      act(() => {
-        jest.runOnlyPendingTimers();
-      });
 
+      simulateTimePassage();
       expect(cookieCount).toHaveTextContent('3');
+
       jest.useRealTimers();
     });
 
@@ -87,22 +204,15 @@ describe('Game', () => {
       const cookieCount = screen.getByTestId('cookie-count');
       expect(cookieCount).toHaveTextContent('0');
 
-      act(() => {
-        jest.runOnlyPendingTimers();
-      });
-
+      simulateTimePassage();
       expect(cookieCount).toHaveTextContent(expectedIncrease);
 
-      act(() => {
-        jest.runOnlyPendingTimers();
-      });
-
+      simulateTimePassage();
       expect(cookieCount).toHaveTextContent(expectedIncrease * 2);
-      act(() => {
-        jest.runOnlyPendingTimers();
-      });
 
+      simulateTimePassage();
       expect(cookieCount).toHaveTextContent(expectedIncrease * 3);
+
       jest.useRealTimers();
     });
 
@@ -115,19 +225,13 @@ describe('Game', () => {
       const cookieCount = screen.getByTestId('cookie-count');
       expect(cookieCount).toHaveTextContent('0');
 
-      act(() => {
-        jest.runOnlyPendingTimers();
-      });
+      simulateTimePassage();
       expect(cookieCount).toHaveTextContent(expectedIncrease);
 
-      act(() => {
-        jest.runOnlyPendingTimers();
-      });
+      simulateTimePassage();
       expect(cookieCount).toHaveTextContent(expectedIncrease * 2);
 
-      act(() => {
-        jest.runOnlyPendingTimers();
-      });
+      simulateTimePassage();
       expect(cookieCount).toHaveTextContent(expectedIncrease * 3);
 
       jest.useRealTimers();
