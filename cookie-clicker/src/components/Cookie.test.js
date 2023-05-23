@@ -16,18 +16,25 @@ describe('Cookie component', () => {
       expect(getByTestId('cookie-count')).toHaveTextContent('10');
     });
 
-    it('formats > 1000 cookie counts with k notation', () => {
+    it('formats > 1000 cookie counts with k notation and 3 decimal places', () => {
       const { getByTestId } = render(
         <Cookie cookies={9999} onClick={() => {}} />
       );
       expect(getByTestId('cookie-count')).toHaveTextContent('9.999k');
     });
 
-    it('formats > 10000 cookie counts with k notation', () => {
+    it('formats > 10000 cookie counts with k notation and 2 decimal places', () => {
       const { getByTestId } = render(
         <Cookie cookies={99999} onClick={() => {}} />
       );
       expect(getByTestId('cookie-count')).toHaveTextContent('99.99k');
+    });
+
+    it('formats > 100000 cookie counts with k notation and 1 decimal place', () => {
+      const { getByTestId } = render(
+        <Cookie cookies={999999} onClick={() => {}} />
+      );
+      expect(getByTestId('cookie-count')).toHaveTextContent('999.9k');
     });
   });
 

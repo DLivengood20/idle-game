@@ -33,7 +33,11 @@ const ShopSidebar = ({
           setCount={setCount}
         />
       </div>
-      <button className="sidebar-toggle" onClick={toggleSidebar}>
+      <button
+        className="sidebar-toggle"
+        onClick={toggleSidebar}
+        data-testid="sidebar-toggle"
+      >
         {isSidebarOpen ? '<' : '>'}
       </button>
     </div>

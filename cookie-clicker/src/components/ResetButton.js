@@ -32,7 +32,7 @@ const ResetButton = ({
       </button>
       {showConfirmation && (
         <div className="overlay">
-          <div className="confirmation-popup">
+          <div className="confirmation-popup" data-testid="confirmation-popup">
             <p>Are you sure you want to reset the game?</p>
             <div className="confirmation-buttons">
               <button className="confirm-button" onClick={resetGame}>
