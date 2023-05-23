@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import ResetButton from './ResetButton';
+import ResetButton from '../ResetButton';
 
 describe('ResetButton', () => {
   test('renders the reset button', () => {

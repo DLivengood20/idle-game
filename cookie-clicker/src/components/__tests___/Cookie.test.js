@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Cookie from './Cookie';
+import Cookie from '../Cookie';
 
 describe('Cookie component', () => {
   it('renders the component', () => {

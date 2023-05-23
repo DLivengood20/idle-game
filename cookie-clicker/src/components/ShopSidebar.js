@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ShopSidebar.css';
+import './styles/ShopSidebar.css';
 import ClickerShop from './ClickerShop';
 
 const ShopSidebar = ({

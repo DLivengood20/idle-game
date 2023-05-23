@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import ShopSidebar from './ShopSidebar';
+import ShopSidebar from '../ShopSidebar';
 
 describe('ShopSidebar', () => {
   test('renders the sidebar closed by default', () => {

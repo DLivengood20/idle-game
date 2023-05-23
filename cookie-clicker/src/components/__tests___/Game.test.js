@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Game from './Game';
+import Game from '../Game';
 import { act } from 'react-dom/test-utils';
 
 // Helper function to simulate the passage of time

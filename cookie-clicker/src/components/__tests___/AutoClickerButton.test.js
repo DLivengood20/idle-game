@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import AutoClickerButton from './AutoClickerButton';
+import AutoClickerButton from '../AutoClickerButton';
 
 describe('AutoClickerButton', () => {
   it('should render autoclicker button', () => {

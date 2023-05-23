@@ -25,3 +25,7 @@
 .autoclicker-button-container {
   grid-column: auto;
 }
+
+.autoclicker-button {
+  width: 100%;
+}

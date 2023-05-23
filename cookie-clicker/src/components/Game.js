@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Cookie from './components/Cookie';
-import AutoClickerDisplay from './components/AutoClickerDisplay';
-import GetCookieSize from './components/GetCookieSize';
-import ResetButton from './components/ResetButton';
-import ShopSidebar from './components/ShopSidebar';
-import './Game.css';
+import Cookie from './Cookie';
+import AutoClickerDisplay from './AutoClickerDisplay';
+import GetCookieSize from '../utils/GetCookieSize';
+import ResetButton from './ResetButton';
+import ShopSidebar from './ShopSidebar';
+import './styles/Game.css';
 
 const Game = () => {
   // State variables for cookies and auto clickers
@@ -91,32 +91,36 @@ const Game = () => {
   }, [tier1AutoClickers, tier2AutoClickers, tier3AutoClickers]);
 
   return (
-    <div
-      data-testid="game-component"
-      style={{ '--cookie-size': `${GetCookieSize()}px` }}
-    >
-      <Cookie cookies={cookies} onClick={handleClick} />
-      <AutoClickerDisplay
-        tier1AutoClickers={tier1AutoClickers}
-        tier2AutoClickers={tier2AutoClickers}
-        tier3AutoClickers={tier3AutoClickers}
-      />
-      <ShopSidebar
-        cookies={cookies}
-        tier1AutoClickers={tier1AutoClickers}
-        setTier1AutoClickers={setTier1AutoClickers}
-        tier2AutoClickers={tier2AutoClickers}
-        setTier2AutoClickers={setTier2AutoClickers}
-        tier3AutoClickers={tier3AutoClickers}
-        setTier3AutoClickers={setTier3AutoClickers}
-        setCount={setCount}
-      />
-      <ResetButton
-        setCount={setCount}
-        setTier1AutoClickers={setTier1AutoClickers}
-        setTier2AutoClickers={setTier2AutoClickers}
-        setTier3AutoClickers={setTier3AutoClickers}
-      />
+    <div className="App">
+      <h1>Cookie Clicker</h1>
+
+      <div
+        data-testid="game-component"
+        style={{ '--cookie-size': `${GetCookieSize()}px` }}
+      >
+        <Cookie cookies={cookies} onClick={handleClick} />
+        <AutoClickerDisplay
+          tier1AutoClickers={tier1AutoClickers}
+          tier2AutoClickers={tier2AutoClickers}
+          tier3AutoClickers={tier3AutoClickers}
+        />
+        <ShopSidebar
+          cookies={cookies}
+          tier1AutoClickers={tier1AutoClickers}
+          setTier1AutoClickers={setTier1AutoClickers}
+          tier2AutoClickers={tier2AutoClickers}
+          setTier2AutoClickers={setTier2AutoClickers}
+          tier3AutoClickers={tier3AutoClickers}
+          setTier3AutoClickers={setTier3AutoClickers}
+          setCount={setCount}
+        />
+        <ResetButton
+          setCount={setCount}
+          setTier1AutoClickers={setTier1AutoClickers}
+          setTier2AutoClickers={setTier2AutoClickers}
+          setTier3AutoClickers={setTier3AutoClickers}
+        />
+      </div>
     </div>
   );
 };

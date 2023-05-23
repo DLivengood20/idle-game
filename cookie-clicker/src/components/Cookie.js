@@ -1,6 +1,6 @@
 import React from 'react';
-import CookieImg from './cookie.png';
-import './Cookie.css';
+import CookieImg from '../assets/cookie.png';
+import './styles/Cookie.css';
 
 const Cookie = ({ cookies, onClick }) => {
   // Function to determine the displayed cookie count

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import ClickerShop from './ClickerShop';
+import ClickerShop from '../ClickerShop';
 
 describe('ClickerShop component', () => {
   it('should render three AutoClickerButtons', () => {

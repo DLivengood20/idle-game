@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ResetButton.css';
+import './styles/ResetButton.css';
 
 const ResetButton = ({
   setCount,

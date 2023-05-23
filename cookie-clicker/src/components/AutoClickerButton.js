@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AutoClickerButton.css';
+import './styles/AutoClickerButton.css';
 
 const AutoClickerButton = ({
   tier,

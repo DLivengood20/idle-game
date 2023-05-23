@@ -1,3 +1,11 @@
+.App {
+  text-align: center;
+}
+
+.App h1 {
+  font-size: 3rem;
+}
+
 /* Styles for the button element */
 button {
   font-size: 2em; /* Sets the font size of the button text */

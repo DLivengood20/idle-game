@@ -1,6 +1,6 @@
-import clickerImg from './clicker.png';
-import './AutoClickerDisplay.css';
-import GetCookieSize from './GetCookieSize';
+import clickerImg from '../assets/clicker.png';
+import './styles/AutoClickerDisplay.css';
+import GetCookieSize from '../utils/GetCookieSize';
 
 const AutoClickerDisplay = ({
   tier1AutoClickers,
