@@ -8,13 +8,13 @@
   grid-row: auto;
   transition: left 0.3s ease;
   --sidebar-button-width: 30px;
-  --sidebar-width: calc(var(--cookie-size) * 1.8);
+  --sidebar-width: 500px;
   width: var(--sidebar-width);
 }
 
 .sidebar.closed {
   left: calc(
-    calc(var(--sidebar-width) * -1) + var(--sidebar-button-width) - 2px
+    calc(var(--sidebar-width) * -1) + var(--sidebar-button-width) - 5px
   );
 }
 
@@ -25,6 +25,10 @@
 
 .sidebar.open {
   left: 0;
+}
+
+.sidebar.open > div:first-of-type {
+  width: 100%;
 }
 
 .sidebar-toggle {
