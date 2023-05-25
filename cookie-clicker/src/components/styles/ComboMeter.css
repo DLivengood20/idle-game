@@ -1,0 +1,34 @@
+.combo-meter {
+  /* Set the size and position of the meter */
+  width: 300px;
+  height: 20px;
+  position: relative;
+}
+
+.combo-meter::-webkit-meter-bar {
+  /* Style the meter background */
+  background-color: #333;
+  border: 1px solid #666;
+  border-radius: 4px;
+}
+
+.combo-meter::-webkit-meter-optimum-value {
+  /* Style the optimum range */
+  background-color: #00ff00;
+}
+
+.combo-meter::-webkit-meter-suboptimum-value {
+  /* Style the suboptimum range */
+  background-color: #ffff00;
+}
+
+.combo-meter::-webkit-meter-even-less-good-value {
+  /* Style the less good range */
+  background-color: #ff0000;
+}
+
+.combo-meter::-webkit-meter-value {
+  /* Style the current value */
+  background-color: #ffcc00;
+  border-radius: 4px;
+}

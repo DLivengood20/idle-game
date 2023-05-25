@@ -4,14 +4,17 @@ import AutoClickerDisplay from './AutoClickerDisplay';
 import GetCookieSize from '../utils/GetCookieSize';
 import ResetButton from './ResetButton';
 import ShopSidebar from './ShopSidebar';
+import ComboMeter from './ComboMeter';
 import './styles/Game.css';
 
 const Game = () => {
-  // State variables for cookies and auto clickers
+  // State variables
   const [cookies, setCount] = useState(0);
   const [tier1AutoClickers, setTier1AutoClickers] = useState(0);
   const [tier2AutoClickers, setTier2AutoClickers] = useState(0);
   const [tier3AutoClickers, setTier3AutoClickers] = useState(0);
+  const [comboCount, setComboCount] = useState(0);
+  const [comboMultiplier, setComboMultiplier] = useState(1);
 
   useEffect(() => {
     // Load cookies and auto clickers from browser storage
@@ -45,7 +48,8 @@ const Game = () => {
 
   // Function to handle cookie click
   const handleClick = () => {
-    setCount(cookies + 1);
+    setCount(cookies + comboMultiplier);
+    setComboCount(comboCount + 10);
   };
 
   // Function to calculate auto clicker values
@@ -84,11 +88,18 @@ const Game = () => {
         tier3AutoClickers
       );
       const interval = setInterval(() => {
-        setCount((prevCount) => prevCount + cookiesPerInterval);
+        setCount(
+          (prevCount) => prevCount + cookiesPerInterval * comboMultiplier
+        );
       }, intervalLength);
       return () => clearInterval(interval);
     }
-  }, [tier1AutoClickers, tier2AutoClickers, tier3AutoClickers]);
+  }, [
+    tier1AutoClickers,
+    tier2AutoClickers,
+    tier3AutoClickers,
+    comboMultiplier,
+  ]);
 
   return (
     <div className="App">
@@ -113,6 +124,12 @@ const Game = () => {
           tier3AutoClickers={tier3AutoClickers}
           setTier3AutoClickers={setTier3AutoClickers}
           setCount={setCount}
+        />
+        <ComboMeter
+          comboCount={comboCount}
+          setComboCount={setComboCount}
+          comboMultiplier={comboMultiplier}
+          setComboMultiplier={setComboMultiplier}
         />
         <ResetButton
           setCount={setCount}
