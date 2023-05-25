@@ -19,8 +19,15 @@ const ShopSidebar = ({
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const getSidebarWidth = () => {
+    return window.innerWidth < 550 ? 200 : 500;
+  };
+
   return (
-    <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
+    <div
+      className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}
+      style={{ '--sidebar-width': `${getSidebarWidth()}px` }}
+    >
       <div>
         <ClickerShop
           cookies={cookies}

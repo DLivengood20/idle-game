@@ -1,9 +1,5 @@
 function GetCookieSize() {
-  if (window.innerWidth < 400) {
-    return 160;
-  } else {
-    return 320;
-  }
+  return window.innerWidth < 400 ? 160 : 320;
 }
 
 export default GetCookieSize;
